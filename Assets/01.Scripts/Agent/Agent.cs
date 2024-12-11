@@ -35,7 +35,7 @@ namespace BGD.Agents
             });
         }
 
-        public T GetComop<T>(bool isDerived = false) where T : IAgentComponent
+        public T GetCompo<T>(bool isDerived = false) where T : IAgentComponent
         {
             // T 타입이면서 IAgentComponent를 구현했는지 확인하고 확인 했다면 component로 out함
             if (_components.TryGetValue(typeof(T), out IAgentComponent component))
