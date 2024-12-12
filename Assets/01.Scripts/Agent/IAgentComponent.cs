@@ -6,6 +6,6 @@ namespace BGD.Agents
 {
     public interface IAgentComponent 
     {
-        public void Initialize(Agent agnet);
+        public void Initialize(Agent agent);
     }
 }

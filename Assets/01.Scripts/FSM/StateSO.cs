@@ -5,10 +5,10 @@ using UnityEngine;
 
 namespace BGD.FSM
 {
-    [CreateAssetMenu(menuName = "SO/FSM/AgnetStateSO")]
-    public class AgentStateSO : ScriptableObject
+    [CreateAssetMenu(menuName = "SO/FSM/StateSO")]
+    public class StateSO : ScriptableObject
     {
-        public string StateName;
+        public FSMState stateName;
         public string className;
         public AnimParamSO animParam;
 

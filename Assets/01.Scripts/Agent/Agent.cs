@@ -17,6 +17,8 @@ namespace BGD.Agents
 
             GetComponentsInChildren<IAgentComponent>(true).ToList()
                 .ForEach(x => _components.Add(x.GetType(), x));
+            InitializeComponenets();
+            AfterInitComponents();
         }
 
         private void InitializeComponenets()

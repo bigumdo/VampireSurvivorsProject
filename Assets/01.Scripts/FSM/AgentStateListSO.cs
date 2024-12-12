@@ -19,7 +19,7 @@ namespace BGD.FSM
     public class AgentStateListSO : ScriptableObject
     {
 
-        public List<AgentStateSO> states;
+        public List<StateSO> states;
     }
 }
 

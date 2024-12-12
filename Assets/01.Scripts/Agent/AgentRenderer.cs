@@ -36,14 +36,14 @@ namespace BGD.Agents
 
         public void FlipController(float xMovement)
         {
-            if (Mathf.Abs(FacingDirection - xMovement) > 0.5f)
+            if (Mathf.Abs(FacingDirection + xMovement) < 0.5f)
                 Flip();
         }
 
         public void Flip()
         {
             FacingDirection *= -1;
-            _agent.transform.Rotate(0, 180, 0);
+            _agent.transform.Rotate(0, 180f, 0);
 
         }
 
