@@ -18,7 +18,7 @@ namespace BGD.Agents
         [SerializeField] private LayerMask _whatIsGround;
 
         [field: SerializeField] public bool IsGrounded { get; private set; }
-        public event Action<bool> OnGroundStateChanged;
+        //public event Action<bool> OnGroundStateChanged;
 
         public Vector2 Velocity => _rbCompo.velocity;
         public bool CanManualMove { get; set; } = true; //키보드로 움직임 가능

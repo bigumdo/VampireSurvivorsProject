@@ -28,10 +28,6 @@ namespace BGD.Players
             _stateMachine.UpdateState();
         }
 
-
-
-
-
         public void ChangeState(FSMState state) => _stateMachine.ChangeState(state);
     }
 }
