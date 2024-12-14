@@ -8,12 +8,12 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Playeer
+  - Enemy
+  - Obj
   - 
   - 
   - 
@@ -40,4 +40,16 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: GroundTile
+    uniqueID: 425348091
+    locked: 0
+  - name: WallGroundTile
+    uniqueID: 3941481705
+    locked: 0
+  - name: WallTile
+    uniqueID: 3380624969
+    locked: 0
+  - name: Agent
+    uniqueID: 3991528479
     locked: 0
