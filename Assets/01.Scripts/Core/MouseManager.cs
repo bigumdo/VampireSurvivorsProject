@@ -11,6 +11,16 @@ namespace BGD.Core.Manager
         private Player _player;
         public Vector2 MouseDir { get; private set; }
 
+        private void Awake()
+        {
+            _player = FindObjectOfType<Player>();
+        }
+
+        private void LateUpdate()
+        {
+            SetMouseDir();
+        }
+
         public void SetMousePoint(bool isMousePoint)
         {
             Cursor.lockState = CursorLockMode.None;
@@ -21,8 +31,8 @@ namespace BGD.Core.Manager
         {
             Vector2 playerPos = _player.transform.position;
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            //mousePos.z = Mathf.Abs(Camera.main.transform.position.z);
             MouseDir = (mousePos - playerPos).normalized;
-
             //float angle = Mathf.Atan2(mousePos.y - playerPos.y, mousePos.x - playerPos.x) * Mathf.Rad2Deg;
 
             //transform.rotation = Quaternion.Euler(0, 0, angle);
