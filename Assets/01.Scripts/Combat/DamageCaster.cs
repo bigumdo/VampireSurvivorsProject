@@ -13,6 +13,7 @@ namespace BGD.Combat
         protected Collider2D[] _hitResults;
         protected Agent _owner;
 
+
         public virtual void InitCaster(Agent owner)
         {
             _hitResults = new Collider2D[_maxHitCount];
