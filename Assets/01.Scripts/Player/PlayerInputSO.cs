@@ -7,7 +7,7 @@ namespace BGD.Players
     [CreateAssetMenu(menuName = "SO/PlayerInputSO")]
     public class PlayerInputSO : ScriptableObject, Controls.IPlayerActions
     {
-        
+        public event Action AttackEvent; 
         public Vector2 InputDirection { get; private set; }
 
         private Controls _controls;
@@ -36,7 +36,7 @@ namespace BGD.Players
         {
             if(context.performed)
             {
-
+                AttackEvent?.Invoke();
             }
         }
     }

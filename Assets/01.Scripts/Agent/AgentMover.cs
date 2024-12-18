@@ -19,9 +19,9 @@ namespace BGD.Agents
 
         [field: SerializeField] public bool IsGrounded { get; private set; }
         //public event Action<bool> OnGroundStateChanged;
-
+        
         public Vector2 Velocity => _rbCompo.velocity;
-        public bool CanManualMove { get; set; } = true; //Å°º¸µå·Î ¿òÁ÷ÀÓ °¡´É
+        public bool CanManualMove { get; set; } = true; //Å°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         public float SpeedMultiplier { get; set; } = 1f;
 
         private Rigidbody2D _rbCompo;

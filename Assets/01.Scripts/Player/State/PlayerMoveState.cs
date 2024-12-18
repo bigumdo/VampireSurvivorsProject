@@ -7,14 +7,10 @@ using UnityEngine;
 
 namespace BGD.Players
 {
-    public class PlayerMoveState : AgentState
+    public class PlayerMoveState : PlayerGroundState
     {
-        private Player _player;
-        private AgentMover _mover;
         public PlayerMoveState(Agent agent, AnimParamSO animParam) : base(agent, animParam)
         {
-            _player = agent as Player;
-            _mover = agent.GetCompo<AgentMover>();
         }
 
         public override void Update()
