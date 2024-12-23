@@ -6,21 +6,19 @@ using static UnityEngine.EventSystems.EventTrigger;
 
 namespace BGD.Combat
 {
-    public abstract class DamageCaster : MonoBehaviour
+    public class DamageCaster :  BaseCaster
     {
-        [SerializeField] protected int _maxHitCount;
-        [SerializeField] protected ContactFilter2D _contactFilter;
-        protected Collider2D[] _hitResults;
-        protected Agent _owner;
+        [SerializeField] protected int _damage;
 
-
-        public virtual void InitCaster(Agent owner)
+        public override void Cast(Collider2D[] colliders)
         {
-            _hitResults = new Collider2D[_maxHitCount];
-            _owner = owner;
+            for (int i = 0; i < colliders.Length; i++)
+            {
+                if (colliders[i].TryGetComponent(out AgentHealth health))
+                {
+                    health.ApplyDamage(_damage);
+                }
+            }
         }
-
-        public abstract bool CastDamage(float damage, Vector2 knockBack, bool isPowerAttack);
-        //public abstract ICounterable GetCounterableTartget(LayerMask whatIsCounterable);
     }
 }

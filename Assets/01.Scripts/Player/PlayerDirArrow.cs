@@ -30,20 +30,13 @@ namespace BGD.Players
         }
         private void SetMouseDir()
         {
-            Vector2 mousePos = MouseManager.Instance.MouseDir;
+            Vector2 mousePos = MouseManager.Instance.MousePos;
             Vector2 playerPos = _player.transform.position;
 
             float angle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
 
-            if(Mathf.Abs(angle -transform.rotation.z)>5)
-            {
-                transform.rotation = Quaternion.Euler(0, 0, angle);
-                //Vector2 mouseDir = (mousePos - playerPos).normalized;
-                //MouseDir = Mathf.Atan2(mouseDir.y, mouseDir.x) * Mathf.Rad2Deg;
-
-                transform.position = (mousePos * _arrowDistance) + (Vector2)_player.transform.position;
-                //transform.rota(MouseDir);
-            }
+            transform.rotation = Quaternion.Euler(0, 0, angle);
+            transform.position = (mousePos * _arrowDistance) + (Vector2)_player.transform.position;
         }
     }
 }
