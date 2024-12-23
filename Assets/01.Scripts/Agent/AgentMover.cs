@@ -1,4 +1,5 @@
 using BGD.Animators;
+using BGD.Core.Manager;
 using BGD.FSM;
 using BGD.StatSystem;
 using DG.Tweening;
@@ -15,11 +16,6 @@ namespace BGD.Agents
         [SerializeField] private StatSO _moveStat;
         [SerializeField] private float _moveSpeed = 5f;
 
-        [SerializeField] private LayerMask _whatIsGround;
-
-        [field: SerializeField] public bool IsGrounded { get; private set; }
-        //public event Action<bool> OnGroundStateChanged;
-        
         public Vector2 Velocity => _rbCompo.velocity;
         public bool CanManualMove { get; set; } = true; //Ű����� ������ ����
         public float SpeedMultiplier { get; set; } = 1f;
@@ -80,9 +76,13 @@ namespace BGD.Agents
         private void MoveCharacter()
         {
             if (CanManualMove)
+            {
+                if()
                 _rbCompo.velocity = _movement * _moveSpeed * SpeedMultiplier;
 
-            _renderer.FlipController(_movement.x);
+            }
+
+            _renderer.FlipController(MouseManager.Instance.MouseDir);
         }
 
         public void KnockBack(Vector2 force, float time)

@@ -9,7 +9,9 @@ namespace BGD.Core.Manager
 
     {
         private Player _player;
-        public Vector2 MouseDir { get; private set; }
+        public Vector2 MousePos { get; private set; }
+        public float MouseDir { get; private set; }
+        //public float 
 
         private void Awake()
         {
@@ -31,16 +33,8 @@ namespace BGD.Core.Manager
         {
             Vector2 playerPos = _player.transform.position;
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            //mousePos.z = Mathf.Abs(Camera.main.transform.position.z);
-            MouseDir = (mousePos - playerPos).normalized;
-            //float angle = Mathf.Atan2(mousePos.y - playerPos.y, mousePos.x - playerPos.x) * Mathf.Rad2Deg;
-
-            //transform.rotation = Quaternion.Euler(0, 0, angle);
-            //Vector2 mouseDir = (mousePos - playerPos).normalized;
-            //MouseDir = Mathf.Atan2(mouseDir.y, mouseDir.x) * Mathf.Rad2Deg;
-
-            //transform.position = MouseDir * _arrowDistance;
-            //transform.rota(MouseDir);
+            MousePos = (mousePos - playerPos).normalized;
+            MouseDir = mousePos.x > 0 ? 1 : -1;
         }
     }
 }

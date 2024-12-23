@@ -38,14 +38,14 @@ namespace BGD.Agents
         {
             if (Mathf.Abs(FacingDirection + xMovement) < 0.5f)
                 Flip();
+
+
         }
 
         public void Flip()
         {
             FacingDirection *= -1;
             _spriteRenderer.flipX = FacingDirection <0 ? true: false;
-            //_agent.transform.localScale = new Vector3(FacingDirection, 1, 1);
-            //_agent.transform.Rotate(0, 180f, 0);
 
         }
 

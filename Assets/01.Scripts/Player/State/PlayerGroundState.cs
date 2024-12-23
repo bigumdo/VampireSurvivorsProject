@@ -21,18 +21,11 @@ namespace BGD.Players
         public override void Enter()
         {
             base.Enter();
-            _player.PlayerInputSO.AttackEvent += HandleAttackEvent;
         }
 
         public override void Exit()
         {
-            _player.PlayerInputSO.AttackEvent -= HandleAttackEvent;
             base.Exit();
-        }
-
-        private void HandleAttackEvent()
-        {
-            _player.ChangeState(FSMState.Attack);
         }
     }
 }
