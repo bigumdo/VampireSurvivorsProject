@@ -11,11 +11,11 @@ namespace BGD.Players
     public class PlayerGroundState : AgentState
     {
         protected Player _player;
-        protected AgentMover _mover;
+        protected PlayerMover _mover;
         public PlayerGroundState(Agent agent, AnimParamSO animParam) : base(agent, animParam)
         {
             _player = agent as Player;
-            _mover = agent.GetCompo<AgentMover>();
+            _mover = agent.GetCompo<PlayerMover>();
         }
 
         public override void Enter()

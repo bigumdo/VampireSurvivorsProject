@@ -13,22 +13,22 @@ namespace BGD.Agents
     public class AgentMover : MonoBehaviour,IAgentComponent,IAfterInitable
     {
         [Header("Move stats")]
-        [SerializeField] private StatSO _moveStat;
-        [SerializeField] private float _moveSpeed = 5f;
+        [SerializeField] protected StatSO _moveStat;
+        protected float _moveSpeed = 5f;
 
         public Vector2 Velocity => _rbCompo.velocity;
         public bool CanManualMove { get; set; } = true; //Ű����� ������ ����
         public float SpeedMultiplier { get; set; } = 1f;
 
-        private Rigidbody2D _rbCompo;
-        private Agent _entity;
-        private AgentRenderer _renderer;
-        private AgentStat _stat;
-        private Vector2 _movement;
+        protected Rigidbody2D _rbCompo;
+        protected Agent _entity;
+        protected AgentRenderer _renderer;
+        protected AgentStat _stat;
+        protected Vector2 _movement;
 
-        private Collider2D _collider;
+        protected Collider2D _collider;
 
-        public void Initialize(Agent agent)
+        public virtual void Initialize(Agent agent)
         {
             _entity = agent;
             _rbCompo = agent.GetComponent<Rigidbody2D>();
@@ -38,18 +38,18 @@ namespace BGD.Agents
             _collider = agent.GetComponent<Collider2D>();
         }
 
-        public void AfterInit()
+        public virtual void AfterInit()
         {
             _stat.MoveSpeedStat.OnValueChange += HandleMoveSpeedChange;
             _moveSpeed = _stat.MoveSpeedStat.Value;
         }
 
-        private void OnDestroy()
+        protected virtual void OnDestroy()
         {
             _stat.MoveSpeedStat.OnValueChange -= HandleMoveSpeedChange;
         }
 
-        private void HandleMoveSpeedChange(StatSO stat, float current, float previous)
+        protected virtual void HandleMoveSpeedChange(StatSO stat, float current, float previous)
         {
             _moveSpeed = current;
         }
@@ -73,19 +73,18 @@ namespace BGD.Agents
             MoveCharacter();
         }
 
-        private void MoveCharacter()
+        protected virtual void MoveCharacter()
         {
             if (CanManualMove)
             {
-                if()
                 _rbCompo.velocity = _movement * _moveSpeed * SpeedMultiplier;
 
             }
 
-            _renderer.FlipController(MouseManager.Instance.MouseDir);
+            _renderer.FlipController(_movement.x);
         }
 
-        public void KnockBack(Vector2 force, float time)
+        public virtual void KnockBack(Vector2 force, float time)
         {
             CanManualMove = false;
             StopImmediately();

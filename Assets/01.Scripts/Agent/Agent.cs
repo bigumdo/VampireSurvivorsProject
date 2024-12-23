@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace BGD.Agents
 {
@@ -10,6 +11,8 @@ namespace BGD.Agents
     {
         public bool IsDead { get; set; }
         protected Dictionary<Type, IAgentComponent> _components;
+        public UnityEvent OnDeadEvent;
+        public UnityEvent OnHitEvent;
 
         protected virtual void Awake()
         {
@@ -35,6 +38,8 @@ namespace BGD.Agents
                     afterInit.AfterInit();
                 }
             });
+            OnDeadEvent.AddListener(HandleDeadEvent);
+            OnHitEvent.AddListener(HandleHitEvent);
         }
 
         public T GetCompo<T>(bool isDerived = false) where T : IAgentComponent
@@ -57,6 +62,22 @@ namespace BGD.Agents
                 return (T)_components[findType];
 
             return default;
+        }
+
+        private void OnDestroy()
+        {
+            OnDeadEvent.RemoveListener(HandleDeadEvent);
+            OnHitEvent.RemoveListener(HandleHitEvent);
+        }
+
+        public virtual void HandleHitEvent()
+        {
+
+        }
+
+        public virtual void HandleDeadEvent()
+        {
+
         }
     }
 }

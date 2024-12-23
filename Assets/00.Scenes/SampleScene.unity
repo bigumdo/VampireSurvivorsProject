@@ -69203,15 +69203,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1036728512}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d0de854b5c121944a78fb9f5cae7306, type: 3}
+  m_Script: {fileID: 11500000, guid: ea156c813013c5546a9c078bb0e31c13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _moveStat: {fileID: 11400000, guid: 37771a2e8ac67734db2841856c642e17, type: 2}
-  _moveSpeed: 5
-  _whatIsGround:
-    serializedVersion: 2
-    m_Bits: 0
-  <IsGrounded>k__BackingField: 0
 --- !u!1 &1245490546
 GameObject:
   m_ObjectHideFlags: 0
