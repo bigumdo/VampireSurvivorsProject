@@ -27376,6 +27376,7 @@ MonoBehaviour:
     m_Bits: 128
   castCnt: 3
   _damage: 3
+  _attackCoolTime: 0
 --- !u!114 &179840916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27884,6 +27885,37 @@ Transform:
   - {fileID: 131104554}
   - {fileID: 1687600998}
   m_Father: {fileID: 1334051590}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &818023131
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 818023132}
+  m_Layer: 0
+  m_Name: SoulEnemy
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &818023132
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 818023131}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &966024595
 GameObject:
@@ -70068,6 +70100,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f5d71b26aa2cd74f8d93370312e50bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnDeadEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHitEvent:
+    m_PersistentCalls:
+      m_Calls: []
   playerFSM: {fileID: 11400000, guid: 170b7cf977edf5f4e979bb9273d7d5fb, type: 2}
   <PlayerInputSO>k__BackingField: {fileID: 11400000, guid: f76259e845185d6479134beba1a6e9e2, type: 2}
 --- !u!1660057539 &9223372036854775807
@@ -70082,3 +70120,4 @@ SceneRoots:
   - {fileID: 91973998}
   - {fileID: 1530673192}
   - {fileID: 726748404}
+  - {fileID: 818023132}

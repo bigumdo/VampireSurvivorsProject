@@ -1,3 +1,4 @@
+using BGD.Agents;
 using BGD.Combat;
 using BGD.StatSystem;
 using System.Collections;
@@ -6,19 +7,28 @@ using UnityEngine;
 
 namespace BGD
 {
-    public class AgentHealth : MonoBehaviour, IDamageable
+    public class AgentHealth : MonoBehaviour, IAgentComponent, IDamageable, IAfterInitable
     {
 
-        [SerializeField] private StatSO _hp;
         private float _currentHealth;
-        private void Awake()
+        private Agent _agent;
+        private AgentStat _stat;
+        public void Initialize(Agent agent)
         {
-            _currentHealth = _hp.Value;
+            _agent = agent;
+            _stat = _agent.GetCompo<AgentStat>();
+        }
+        public void AfterInit()
+        {
+            _currentHealth = _stat.HpStat.Value;
+
         }
 
         public void ApplyDamage(float damage)
         {
             _currentHealth -= damage;
         }
+
+
     }
 }

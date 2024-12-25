@@ -9,6 +9,8 @@ namespace BGD.Combat
     public class DamageCaster :  BaseCaster
     {
         [SerializeField] protected int _damage;
+        [SerializeField] protected float _attackCoolTime;
+        private float _listTime;
 
         public override void Cast(Collider2D[] colliders)
         {
@@ -16,7 +18,11 @@ namespace BGD.Combat
             {
                 if (colliders[i].TryGetComponent(out AgentHealth health))
                 {
-                    health.ApplyDamage(_damage);
+                    if(_listTime + _attackCoolTime > Time.time || _listTime == 0)
+                    {
+                        health.ApplyDamage(_damage);
+                        _listTime = Time.time;
+                    }
                 }
             }
         }
