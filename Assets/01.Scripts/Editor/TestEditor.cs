@@ -13,6 +13,11 @@ namespace BGD.Editor
         private int intVar;
         private Number TestEnum;
         private bool boolVar;
+        private Vector2 test;
+
+        private readonly string _poolDirectory = "Assets/08.SO/ObjectPool";
+        private PoolingTableSO _poolTable;
+
         public enum Number
         {
             One,Two, Three
@@ -35,35 +40,21 @@ namespace BGD.Editor
         {
             intVar = GUILayout.Toolbar(intVar, System.Enum.GetNames(typeof(Number)));
 
-            switch (intVar)
-            {
-                case 0:
-                    EditorGUILayout.LabelField("Test1");
-                    TestToggle = EditorGUILayout.Toggle("ToggleTest", TestToggle);
-                    boolVar = EditorGUILayout.Foldout(boolVar, "My FoldOut", true);//글자를 클릭해도 토글될 것인가
-                    if(boolVar)
-                    {
-                        ++EditorGUI.indentLevel;
-                        GUILayout.BeginVertical();
-                        GUILayout.Label("Test1");
-                        GUILayout.Label("Test2");
-                        GUILayout.Label("Test3");
-                        GUILayout.EndVertical();
-                        --EditorGUI.indentLevel;
-                    }
-                    EditorGUILayout.LabelField("Toggle");
-                        
-                    break;
-                case 1:
-                    EditorGUILayout.LabelField("Test2");
-                    GUILayout.Button("ButtonTest");
-                    break;
-                case 2:
-                    EditorGUILayout.LabelField("Test3");
-                    TestEnum = (Number)EditorGUILayout.EnumPopup("My Enum", TestEnum);
-                    break;
-            }
+            GUILayout.BeginVertical(EditorStyles.helpBox,GUILayout.Width(300f));
+            EditorGUILayout.LabelField("Effect list");
+            EditorGUILayout.Space(3f);
 
+            //BeginScrollView(ScrollView사이즈, 가로를 항상 활성화 할 것인지, 세로를 항상 활성화 할 것인지
+            //, Horizontal설정, Vertical설정,레이아웃설정)
+            EditorGUILayout.BeginScrollView(test,false, true
+                ,GUIStyle.none, GUI.skin.verticalScrollbar,GUIStyle.none);
+
+            EditorGUILayout.EndScrollView();
+
+            //scrollPositions[UtilType.Effect] = EditorGUILayout.BeginScrollView(
+            //    scrollPositions[UtilType.Effect],
+            //    false, true, GUIStyle.none, GUI.skin.verticalScrollbar, GUIStyle.none);
+            GUILayout.EndVertical();
         }
     }
 }

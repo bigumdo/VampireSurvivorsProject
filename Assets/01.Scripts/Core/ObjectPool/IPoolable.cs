@@ -1,0 +1,12 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace BGD.ObjectPooling
+{
+    public interface IPoolable
+    {
+        public PoolingType Type { get; }
+        public void ResetItem();
+    }
+}
