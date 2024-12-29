@@ -1,17 +1,33 @@
 #if UNITY_EDITOR
 using BGD.ObjectPooling;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
-using Unity.VisualScripting;
 using UnityEditor;
-using UnityEditor.UIElements;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
-namespace BGD.Editor
+namespace BGD.CustomEditor
 {
     public class TestEditor : EditorWindow
     {
+        public enum UtilType
+        {
+            Pool,
+            PowerUp, //뱀서처럼 아이템 업그레이드
+            Effect, //해당 아이템 이펙트
+        }
+
+        private static Dictionary<UtilType, Vector2> scrollPositions
+        = new Dictionary<UtilType, Vector2>();
+        private static Dictionary<UtilType, Object> selectedItem
+            = new Dictionary<UtilType, Object>();
+
+        private static Vector2 inspectorScroll = Vector2.zero;
+        private Editor _cachedEditor;
+
+        private GUIStyle _selectStyle;
 
         private readonly string _poolDirectory = "Assets/08.SO/ObjectPool";
         private PoolingTableSO _poolTable;
@@ -51,8 +67,139 @@ namespace BGD.Editor
             DrawPoolItems();
         }
 
+        private void OnEnable()
+        {
+            foreach (UtilType type in Enum.GetValues(typeof(UtilType)))
+            {
+                if (scrollPositions.ContainsKey(type) == false)
+                    scrollPositions[type] = Vector2.zero;
+
+                if (selectedItem.ContainsKey(type) == false)
+                    selectedItem[type] = null;
+            }
+
+            if (_poolTable == null)
+            {
+                _poolTable = CreateAssetTable<PoolingTableSO>(_poolDirectory);
+            }
+        }
+        private void OnDisable()
+        {
+            DestroyImmediate(_cachedEditor);
+            //DestroyImmediate(_selectTexture);
+        }
+
         private void DrawPoolItems()
         {
+            //상단에 메뉴 2개를 만들자.
+            EditorGUILayout.BeginHorizontal();
+            {
+                GUI.color = new Color(0.19f, 0.76f, 0.08f);
+                if (GUILayout.Button("Generate Item"))
+                {
+                    GeneratePoolItem();
+                }
+
+                GUI.color = new Color(0.81f, 0.13f, 0.18f);
+                if (GUILayout.Button("Generate enum file"))
+                {
+                    GenerateEnumFile();
+                }
+            }
+            EditorGUILayout.EndHorizontal();
+
+            GUI.color = Color.white; //원래 색상으로 복귀.
+
+            EditorGUILayout.BeginHorizontal();
+            {
+
+                //왼쪽 풀리스트 출력부분
+                EditorGUILayout.BeginVertical(EditorStyles.helpBox, GUILayout.Width(300f));
+                {
+                    EditorGUILayout.LabelField("Pooling list");
+                    EditorGUILayout.Space(3f);
+
+
+                    scrollPositions[UtilType.Pool] = EditorGUILayout.BeginScrollView(
+                        scrollPositions[UtilType.Pool],
+                        false, true, GUIStyle.none, GUI.skin.verticalScrollbar, GUIStyle.none);
+                    {
+
+                        foreach (PoolingItemSO item in _poolTable.datas)
+                        {
+
+                            //현재 그릴 item이 선택아이템과 동일하면 스타일지정
+                            GUIStyle style = selectedItem[UtilType.Pool] == item ?
+                                                    _selectStyle : GUIStyle.none;
+
+                            EditorGUILayout.BeginHorizontal(style, GUILayout.Height(40f));
+                            {
+                                EditorGUILayout.LabelField(item.enumName, GUILayout.Height(40f), GUILayout.Width(240f));
+
+                                EditorGUILayout.BeginVertical();
+                                {
+                                    EditorGUILayout.Space(10f);
+                                    GUI.color = Color.red;
+                                    if (GUILayout.Button("X", GUILayout.Width(20f)))
+                                    {
+                                        //_poolTable.datas 여기서 해당하는 녀석을 삭제해야해
+                                        _poolTable.datas.Remove(item);
+                                        //Assetdatabase.DeleteAsset기능을 이용해서 완전히 SO도 삭제해야해
+                                        AssetDatabase.DeleteAsset(AssetDatabase.GetAssetPath(item));
+                                        // _poolTable 더럽다고 이야기해줘야 해
+                                        EditorUtility.SetDirty(_poolTable);
+                                        // SaveAsset을 통해서 저장해주면 돼.
+                                        AssetDatabase.SaveAssets();
+                                    }
+                                    GUI.color = Color.white;
+                                }
+                                EditorGUILayout.EndVertical();
+                            }
+                            EditorGUILayout.EndHorizontal();
+
+                            //마지막으로 그린 사각형 정보를 알아온다.
+                            Rect lastRect = GUILayoutUtility.GetLastRect();
+                            //현재 프레임에 처리 중인 이벤트에 Type이 MouseDown이면서
+                            //마지막 그려진 UI 위에 마우스가 있다면
+                            if (Event.current.type == EventType.MouseDown
+                                && lastRect.Contains(Event.current.mousePosition))
+                            {
+                                inspectorScroll = Vector2.zero;
+
+                                selectedItem[UtilType.Pool] = item;
+                                //중복 처리를 막고 다른 UI에서 처리되지 않도록 방지
+                                Event.current.Use();
+                            }
+
+                            //삭제된걸 확인하면 break를 걸어주면 돼.
+                            if (item == null)
+                                break;
+
+                        }
+                        //end of foreach
+
+                    }
+                    EditorGUILayout.EndScrollView();
+
+                }
+                EditorGUILayout.EndVertical();
+
+                //인스펙터를 그려줘야 해.
+                if (selectedItem[UtilType.Pool] != null)
+                {
+                    inspectorScroll = EditorGUILayout.BeginScrollView(inspectorScroll);
+                    {
+                        //selectedItem[UtilType.Pool]에 커스텀 에디터가 생성, 이미 생선된 Eidor재활용.
+                        EditorGUILayout.Space(2f);
+                        Editor.CreateCachedEditor(
+                            selectedItem[UtilType.Pool], null, ref _cachedEditor);
+
+                        _cachedEditor.OnInspectorGUI();
+                    }
+                    EditorGUILayout.EndScrollView();
+                }
+            }
+            EditorGUILayout.EndHorizontal();
 
         }
 
