@@ -8,7 +8,7 @@ using UnityEditor;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace BGD.CustomEditor
+namespace BGD.Editors
 {
     public class TestEditor : EditorWindow
     {
@@ -23,6 +23,9 @@ namespace BGD.CustomEditor
         = new Dictionary<UtilType, Vector2>();
         private static Dictionary<UtilType, Object> selectedItem
             = new Dictionary<UtilType, Object>();
+
+        private Texture2D _selectTexture;
+        private string[] _toolbarItemNames;
 
         private static Vector2 inspectorScroll = Vector2.zero;
         private Editor _cachedEditor;
@@ -69,6 +72,23 @@ namespace BGD.CustomEditor
 
         private void OnEnable()
         {
+            SetUpUtility();
+        }
+        private void SetUpUtility()
+        {
+            _selectTexture = new Texture2D(1, 1); //1픽셀짜리 텍스쳐 그림
+            _selectTexture.SetPixel(0, 0, new Color(0.31f, 0.40f, 0.50f));
+            _selectTexture.Apply();
+
+            _selectStyle = new GUIStyle();
+            _selectStyle.normal.background = _selectTexture;
+
+            //빌드에서 제외하기 위해 사용
+            _selectTexture.hideFlags = HideFlags.DontSave;
+
+            _toolbarItemNames = Enum.GetNames(typeof(UtilType));
+
+            //Dictionary기본 설정
             foreach (UtilType type in Enum.GetValues(typeof(UtilType)))
             {
                 if (scrollPositions.ContainsKey(type) == false)
@@ -82,6 +102,16 @@ namespace BGD.CustomEditor
             {
                 _poolTable = CreateAssetTable<PoolingTableSO>(_poolDirectory);
             }
+            //if (_powerUpTable == null)
+            //{
+            //    _powerUpTable = CreateAssetTable<PowerUpListSO>(_powerUpDirectory);
+            //}
+            //if (_effectTable == null)
+            //{
+            //    _effectTable = CreateAssetTable<PowerUpEffectListSO>(_effectDirectory);
+            //}
+            AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
         }
         private void OnDisable()
         {
@@ -146,6 +176,7 @@ namespace BGD.CustomEditor
                                         _poolTable.datas.Remove(item);
                                         //Assetdatabase.DeleteAsset기능을 이용해서 완전히 SO도 삭제해야해
                                         AssetDatabase.DeleteAsset(AssetDatabase.GetAssetPath(item));
+                                        
                                         // _poolTable 더럽다고 이야기해줘야 해
                                         EditorUtility.SetDirty(_poolTable);
                                         // SaveAsset을 통해서 저장해주면 돼.
@@ -164,8 +195,7 @@ namespace BGD.CustomEditor
                             if (Event.current.type == EventType.MouseDown
                                 && lastRect.Contains(Event.current.mousePosition))
                             {
-                                inspectorScroll = Vector2.zero;
-
+                                //inspectorScroll = Vector2.zero;
                                 selectedItem[UtilType.Pool] = item;
                                 //중복 처리를 막고 다른 UI에서 처리되지 않도록 방지
                                 Event.current.Use();
@@ -189,7 +219,7 @@ namespace BGD.CustomEditor
                 {
                     inspectorScroll = EditorGUILayout.BeginScrollView(inspectorScroll);
                     {
-                        //selectedItem[UtilType.Pool]에 커스텀 에디터가 생성, 이미 생선된 Eidor재활용.
+                        //selectedItem[UtilType.Pool]에 에디터를 이미 선언된 Editor에 캐싱하여 재활용
                         EditorGUILayout.Space(2f);
                         Editor.CreateCachedEditor(
                             selectedItem[UtilType.Pool], null, ref _cachedEditor);

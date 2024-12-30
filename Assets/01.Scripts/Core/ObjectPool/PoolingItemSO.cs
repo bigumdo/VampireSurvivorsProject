@@ -11,16 +11,28 @@ namespace BGD.ObjectPooling
         public string poolingName;
         public string description;
         public int poolCount;
+        public MonoBehaviour prefabObj;
         public IPoolable prefab;
 
         private void OnValidate()
         {
-            if (prefab != null)
+            if (prefabObj != null)
             {
-                if (enumName != prefab.Type.ToString())
+                if (prefabObj is IPoolable poolable)
                 {
-                    prefab = null;
-                    Debug.LogWarning("Type mismatch!");
+                    if (enumName == poolable.Type.ToString())
+                    {
+                        prefab = poolable;
+                    }
+                    else
+                    {
+                        prefabObj = null;
+                        Debug.LogWarning("Type mismatch!");
+                    }
+                }
+                else
+                {
+                    prefabObj = null;
                 }
             }
         }
