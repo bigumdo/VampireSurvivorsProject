@@ -10,7 +10,7 @@ namespace BGD.Core.Manager
     {
         private Player _player;
         public Vector2 MousePos { get; private set; }
-        public float MouseDir { get; private set; }
+        public int MouseDir { get; private set; }
         //public float 
 
         private void Awake()
@@ -34,7 +34,7 @@ namespace BGD.Core.Manager
             Vector2 playerPos = _player.transform.position;
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             MousePos = (mousePos - playerPos).normalized;
-            MouseDir = mousePos.x > 0 ? 1 : -1;
+            MouseDir = MousePos.x > 0 ? 1 : -1;
         }
     }
 }

@@ -50,7 +50,7 @@ namespace BGD.FSM
 
         public virtual void AnimationEndTrigger()
         {
-
+            _isTriggerCall = true;
         }
     }
 }
