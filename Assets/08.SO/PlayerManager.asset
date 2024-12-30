@@ -9,11 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fdc5882267d92ee4d887e40f0e7d4da4, type: 3}
-  m_Name: Pool_Test
+  m_Script: {fileID: 11500000, guid: 47e2dbc1989f039478fa5b8d2430930e, type: 3}
+  m_Name: PlayerManager
   m_EditorClassIdentifier: 
-  enumName: Test
-  poolingName: 
-  description: 
-  poolCount: 0
-  prefabObj: {fileID: 0}

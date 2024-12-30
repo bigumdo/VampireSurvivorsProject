@@ -76,8 +76,10 @@ namespace BGD.Editors
         }
         private void SetUpUtility()
         {
+            //Texture설정
             _selectTexture = new Texture2D(1, 1); //1픽셀짜리 텍스쳐 그림
             _selectTexture.SetPixel(0, 0, new Color(0.31f, 0.40f, 0.50f));
+            //설정한 Texture적용
             _selectTexture.Apply();
 
             _selectStyle = new GUIStyle();
@@ -203,8 +205,10 @@ namespace BGD.Editors
 
                             //삭제된걸 확인하면 break를 걸어주면 돼.
                             if (item == null)
+                            {
+                                GenerateEnumFile();
                                 break;
-
+                            }
                         }
                         //end of foreach
 
@@ -230,7 +234,6 @@ namespace BGD.Editors
                 }
             }
             EditorGUILayout.EndHorizontal();
-
         }
 
         private void GeneratePoolItem()
