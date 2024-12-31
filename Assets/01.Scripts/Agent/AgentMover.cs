@@ -51,7 +51,7 @@ namespace BGD.Agents
 
         protected virtual void HandleMoveSpeedChange(StatSO stat, float current, float previous)
         {
-            _moveSpeed = current;
+            _moveSpeed = stat.Value;
         }
 
         public void AddForceToEntity(Vector2 force, ForceMode2D mode = ForceMode2D.Impulse)
