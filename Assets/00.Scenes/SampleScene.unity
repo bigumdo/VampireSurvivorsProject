@@ -69914,6 +69914,9 @@ MonoBehaviour:
   - _stat: {fileID: 11400000, guid: 37771a2e8ac67734db2841856c642e17, type: 2}
     _isUseOverride: 1
     _overrideBaseValue: 5
+  - _stat: {fileID: 11400000, guid: 98255b343169a79479cc96c47c70e764, type: 2}
+    _isUseOverride: 1
+    _overrideBaseValue: 0.2
 --- !u!1 &2012435073
 GameObject:
   m_ObjectHideFlags: 0

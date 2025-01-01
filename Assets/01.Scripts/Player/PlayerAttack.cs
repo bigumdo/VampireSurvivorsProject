@@ -32,7 +32,7 @@ namespace BGD.Players
 
         private void HandleAtkCoolTimeChange(StatSO stat, float current, float previous)
         {
-            Debug.Log(1);
+            Debug.Log("AttackCoolChange");
             _atkCoolTime = stat.Value;
         }
 
