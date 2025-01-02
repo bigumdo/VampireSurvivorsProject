@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace BGD.Enemys
 {
-    public class SoulEnemy : BaseEnemy, IPoolable
+    public class WingsEnemy : BaseEnemy, IPoolable
     {
         private AgentHealth _healthCompo;
         private AgentMover _mover;

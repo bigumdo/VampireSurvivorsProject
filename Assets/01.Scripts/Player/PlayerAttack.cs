@@ -21,18 +21,17 @@ namespace BGD.Players
         }
         public void AfterInit()
         {
-            _atkCoolTimeStat.OnValueChange += HandleAtkCoolTimeChange;
+            _player.GetCompo<AgentStat>().GetStat(_atkCoolTimeStat).OnValueChange += HandleAtkCoolTimeChange;
             _atkCoolTime = _atkCoolTimeStat.Value;
         }
 
         private void OnDestroy()
         {
-            _atkCoolTimeStat.OnValueChange -= HandleAtkCoolTimeChange;
+            _player.GetCompo<AgentStat>().GetStat(_atkCoolTimeStat).OnValueChange -= HandleAtkCoolTimeChange;
         }
 
         private void HandleAtkCoolTimeChange(StatSO stat, float current, float previous)
         {
-            Debug.Log("AttackCoolChange");
             _atkCoolTime = stat.Value;
         }
 
@@ -43,8 +42,6 @@ namespace BGD.Players
             {
                 _checkTime -= _atkCoolTime;
                 Debug.Log("Atk");
-
-
             }
         }
     }

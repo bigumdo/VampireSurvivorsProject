@@ -15,7 +15,6 @@ namespace BGD.StatSystem
         public StatSO CreateStat()
         {
             StatSO newStat = _stat.Clone() as StatSO;
-            Debug.Log(11);
             if(_isUseOverride) 
                 newStat.BaseValue = _overrideBaseValue;
             return newStat;

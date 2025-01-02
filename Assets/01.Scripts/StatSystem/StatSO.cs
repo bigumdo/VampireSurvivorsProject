@@ -76,7 +76,6 @@ namespace BGD.StatSystem
             if(Mathf.Approximately(prevValue, value) == false)
             {
                 OnValueChange?.Invoke(this, value, prevValue);
-                Debug.Log("ValueChange");
             }
         }
 
