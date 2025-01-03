@@ -1,14 +1,12 @@
-using BGD.Agents;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace BGD.Combat
 {
-    public class DamageCaster :  BaseCaster
+    public class PlayerDamageCaster : BaseCaster
     {
         [SerializeField] protected int _damage;
-        private float _listTime;
 
         public override void Cast(Collider2D[] colliders)
         {
@@ -16,8 +14,8 @@ namespace BGD.Combat
             {
                 if (colliders[i].TryGetComponent(out AgentHealth health))
                 {
+                    //나중에 범위로 데미지 들어가게 할꺼임
                     health.ApplyDamage(_damage);
-                    _listTime = Time.time;
                 }
             }
         }

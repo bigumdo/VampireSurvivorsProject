@@ -9,8 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88be4e50918c76c47a6dd88a36f042f5, type: 3}
-  m_Name: WingsEnemyStateList
+  m_Script: {fileID: 11500000, guid: d8a7cb87545c427418eb4be7f312fd58, type: 3}
+  m_Name: HpStat
   m_EditorClassIdentifier: 
-  states:
-  - {fileID: 11400000, guid: c7bf18d7318bd864cb700e6ee16056fb, type: 2}
+  statName: MoveSpeed
+  description: 
+  _icon: {fileID: 0}
+  _displayName: MoveSpeed
+  _baseValue: 5
+  _minValue: 1
+  _maxValue: 30
+  <IsPercent>k__BackingField: 0

@@ -1,4 +1,6 @@
 using BGD.Agents;
+using BGD.Combat;
+using BGD.Core.Manager;
 using BGD.StatSystem;
 using System;
 using System.Collections;
@@ -14,6 +16,9 @@ namespace BGD.Players
         private Player _player;
         private float _atkCoolTime;
         private float _checkTime;
+        private float _attackRange;
+        private int _attackCnt;
+        private Vector2 _test;
 
         public void Initialize(Agent agent)
         {
@@ -41,6 +46,7 @@ namespace BGD.Players
             if(_checkTime >= _atkCoolTime)
             {
                 _checkTime -= _atkCoolTime;
+                _player.GetCompo<Caster>().Cast(CastTypeEnum.Damge, _attackCnt);
                 Debug.Log("Atk");
             }
         }

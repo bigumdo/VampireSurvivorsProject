@@ -13,7 +13,6 @@ namespace BGD.Combat
 
     public class Caster : MonoBehaviour, IAgentComponent
     {
-        [SerializeField] private float _castRadius; // 감지할 범위
         [SerializeField] private Vector2 _castOffset; // 범위 시작위치를 조정하기 위한offset
         private Dictionary<CastTypeEnum, BaseCaster> _casters; //Cast할 종류Dictionary
         private Collider2D[] castTargets; // 감지한 오브젝트의 Collider를 담는 변수
@@ -34,8 +33,8 @@ namespace BGD.Combat
             _currentCast = _casters.GetValueOrDefault(castType);//타입에 맞는 Cast를 갖고 온다.
             Debug.Assert(_currentCast != null, $"{castType}cast없어 돌아가"); // CurrentCast가 Null아니라면 실행
 
-            castTargets = Physics2D.OverlapCircleAll((Vector2)transform.position + _castOffset, _castRadius
-                ,_currentCast.targetLayer, 0, _currentCast.castCnt);//cat설정에 맞게 OverapCircleAll체크
+            castTargets = Physics2D.OverlapCircleAll((Vector2)transform.position + _castOffset, _currentCast.castRange
+                , _currentCast.targetLayer, 0, _currentCast.castCnt);//cat설정에 맞게 OverapCircleAll체크
 
             if (castTargets.Length > 0)
             {
@@ -48,7 +47,8 @@ namespace BGD.Combat
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.green;
-            Gizmos.DrawWireSphere((Vector2)transform.position + _castOffset,_castRadius);
+            if(_currentCast != null ) 
+                Gizmos.DrawWireSphere((Vector2)transform.position + _castOffset, _currentCast.castRange);
         }
     }
 }

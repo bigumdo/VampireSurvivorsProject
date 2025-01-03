@@ -78,7 +78,6 @@ namespace BGD.Agents
             if (CanManualMove)
             {
                 _rbCompo.velocity = _movement * _moveSpeed * SpeedMultiplier;
-
             }
 
             _renderer.FlipController(_movement.x);

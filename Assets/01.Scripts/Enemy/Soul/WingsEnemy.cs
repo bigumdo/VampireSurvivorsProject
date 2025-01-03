@@ -26,7 +26,7 @@ namespace BGD.Enemys
 
         private void Start()
         {
-            _stateMachine.Initialize(FSM.FSMState.Idle);
+            _stateMachine.Initialize(FSM.FSMState.Move);
         }
     }
 }
