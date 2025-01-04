@@ -63,7 +63,6 @@ namespace BGD.Agents
         {
             
             _rbCompo.velocity = Vector2.zero;
-            _movement = Vector2.zero;
         }
 
         public void SetMovement(Vector2 movement) => _movement = movement;

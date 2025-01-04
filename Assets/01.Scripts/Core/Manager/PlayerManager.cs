@@ -20,6 +20,5 @@ namespace BGD.Core.Manager
             }
             set { _player = value; }
         }
-        public Transform PlayerTrm => _player.transform;
     }
 }

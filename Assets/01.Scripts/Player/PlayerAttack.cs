@@ -46,7 +46,7 @@ namespace BGD.Players
             if(_checkTime >= _atkCoolTime)
             {
                 _checkTime -= _atkCoolTime;
-                _player.GetCompo<Caster>().Cast(CastTypeEnum.Damge, _attackCnt);
+                _player.GetCompo<Caster>().Cast(CastTypeEnum.Damge);
                 Debug.Log("Atk");
             }
         }

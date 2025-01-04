@@ -36,9 +36,9 @@ namespace BGD.Enemys
             _stateMachine.ChangeState(newState);
         }
 
-        public void Cast(CastTypeEnum castType,int castCnt)
+        public void Cast(CastTypeEnum castType)
         {
-            _caster.Cast(castType,castCnt);
+            _caster.Cast(castType);
         }
 
         public AgentState GetState(FSMState state)

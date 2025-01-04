@@ -10,6 +10,7 @@ namespace BGD.Enemys
     {
         private AgentHealth _healthCompo;
         private AgentMover _mover;
+        
 
         [field:SerializeField]public PoolingType Type { get; set; }
 
@@ -23,6 +24,7 @@ namespace BGD.Enemys
             _healthCompo = GetCompo<AgentHealth>();
             _mover = GetCompo<AgentMover>();
         }
+
 
         private void Start()
         {

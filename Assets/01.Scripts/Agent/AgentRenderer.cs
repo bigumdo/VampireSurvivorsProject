@@ -38,8 +38,6 @@ namespace BGD.Agents
         {
             if (Mathf.Abs(FacingDirection + xMovement) < 0.5f)
                 Flip();
-
-
         }
 
         public void Flip()
