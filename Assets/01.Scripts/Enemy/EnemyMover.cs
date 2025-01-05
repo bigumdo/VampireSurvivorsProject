@@ -9,6 +9,7 @@ namespace BGD.Enemys
     public class EnemyMover : AgentMover
     {
         private BaseEnemy _enemy;
+
         public override void Initialize(Agent agent)
         {
             base.Initialize(agent);

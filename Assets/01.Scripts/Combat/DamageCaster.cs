@@ -7,8 +7,8 @@ namespace BGD.Combat
 {
     public class DamageCaster :  BaseCaster
     {
-        [SerializeField] protected int _damage;
-        private float _listTime;
+        [SerializeField] private int _damage;
+        private float _listTime = 0;
 
         public override void Cast(Collider2D[] colliders)
         {
