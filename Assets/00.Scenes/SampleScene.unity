@@ -70493,6 +70493,7 @@ MonoBehaviour:
       m_Calls: []
   playerFSM: {fileID: 11400000, guid: 170b7cf977edf5f4e979bb9273d7d5fb, type: 2}
   <PlayerInputSO>k__BackingField: {fileID: 11400000, guid: f76259e845185d6479134beba1a6e9e2, type: 2}
+  atkCoolTimeStat: {fileID: 11400000, guid: 98255b343169a79479cc96c47c70e764, type: 2}
 --- !u!1001 &2896216939028619042
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -70601,6 +70602,10 @@ PrefabInstance:
     - target: {fileID: 3636959867287926906, guid: ac8432e1bd30f314385dc731cb3e9c0c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7898902755932066010, guid: ac8432e1bd30f314385dc731cb3e9c0c, type: 3}
+      propertyPath: _statOverrides.Array.data[1]._overrideBaseValue
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

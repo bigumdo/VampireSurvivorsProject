@@ -1,5 +1,6 @@
 using BGD.Agents;
 using BGD.FSM;
+using BGD.StatSystem;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,7 +11,9 @@ namespace BGD.Players
     {
         public AgentStateListSO playerFSM;
         [field:SerializeField] public PlayerInputSO PlayerInputSO { get; set; }
+        public StatSO atkCoolTimeStat;
         private StateMachine _stateMachine;
+
 
         protected override void Awake()
         {

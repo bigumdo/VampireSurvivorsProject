@@ -27,7 +27,7 @@ namespace BGD.Enemys
             }
             else
                 StopImmediately();
-            _enemy.GetCompo<Caster>().Cast(CastTypeEnum.Damge);
+            //_enemy.GetCompo<Caster>().Cast(CastTypeEnum.Damge);
         }
 
     }
