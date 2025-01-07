@@ -39,10 +39,10 @@ namespace BGD.Combat
             if (castTargets.Length > 0)
             {
                 _currentCast.Cast(castTargets);//체크된 객체가 있다면 현재 cast에게 collider[]변수를 넘긴다.
-                Debug.Log("감지");
+                //Debug.Log("감지");
             }
-            else
-                Debug.Log("주변에 감지된 물체가 없습니다.");
+            //else
+                //Debug.Log("주변에 감지된 물체가 없습니다.");
         }
 
         private void OnDrawGizmos()

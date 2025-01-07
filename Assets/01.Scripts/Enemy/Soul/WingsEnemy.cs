@@ -1,5 +1,6 @@
 using BGD.Agents;
 using BGD.ObjectPooling;
+using BGD.StatSystem;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,7 @@ namespace BGD.Enemys
 {
     public class WingsEnemy : BaseEnemy, IPoolable
     {
+        public StatSO atkCoolTimeStat;
         private AgentHealth _healthCompo;
         private AgentMover _mover;
         
