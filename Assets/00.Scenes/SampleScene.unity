@@ -70183,6 +70183,7 @@ GameObject:
   - component: {fileID: 2049736421}
   - component: {fileID: 2049736420}
   - component: {fileID: 2049736419}
+  - component: {fileID: 2049736423}
   m_Layer: 7
   m_Name: WingsEnemy (1)
   m_TagString: Untagged
@@ -70293,6 +70294,18 @@ Transform:
   - {fileID: 735952070}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2049736423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2049736418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34e15522c7412e74ea486a3afad30acb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2096276653
 GameObject:
   m_ObjectHideFlags: 0
