@@ -10,7 +10,7 @@ namespace BGD.Combat
         [SerializeField] private int _damage;
         private float _listTime = 0;
 
-        public override void Cast(Collider2D[] colliders)
+        public override bool Cast(Collider2D[] colliders)
         {
             for (int i = 0; i < colliders.Length; i++)
             {
@@ -20,6 +20,7 @@ namespace BGD.Combat
                     _listTime = Time.time;
                 }
             }
+            return false;
         }
     }
 }

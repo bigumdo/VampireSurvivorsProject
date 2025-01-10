@@ -8,7 +8,7 @@ namespace BGD.Combat
     {
         [SerializeField] protected int _damage;
 
-        public override void Cast(Collider2D[] colliders)
+        public override bool Cast(Collider2D[] colliders)
         {
             for (int i = 0; i < colliders.Length; i++)
             {
@@ -18,6 +18,7 @@ namespace BGD.Combat
                     health.ApplyDamage(_damage);
                 }
             }
+            return false;
         }
     }
 }
