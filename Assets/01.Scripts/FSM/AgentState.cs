@@ -21,7 +21,7 @@ namespace BGD.FSM
             _agent = agent;
             _animParam = animParam;
             _renderer = agent.GetCompo<AgentRenderer>();
-            _animTrigger = agent.GetCompo<AgentAnimationTrigger>();
+            _animTrigger = agent.GetCompo<AgentAnimationTrigger>(true);
         }
 
         public virtual void Initialize(Agent agent)

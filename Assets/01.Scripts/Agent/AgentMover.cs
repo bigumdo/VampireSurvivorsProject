@@ -51,7 +51,7 @@ namespace BGD.Agents
 
         protected virtual void HandleMoveSpeedChange(StatSO stat, float current, float previous)
         {
-            _moveSpeed = current;
+            _moveSpeed = stat.Value;
         }
 
         public void AddForceToEntity(Vector2 force, ForceMode2D mode = ForceMode2D.Impulse)
@@ -63,7 +63,6 @@ namespace BGD.Agents
         {
             
             _rbCompo.velocity = Vector2.zero;
-            _movement = Vector2.zero;
         }
 
         public void SetMovement(Vector2 movement) => _movement = movement;
@@ -78,7 +77,6 @@ namespace BGD.Agents
             if (CanManualMove)
             {
                 _rbCompo.velocity = _movement * _moveSpeed * SpeedMultiplier;
-
             }
 
             _renderer.FlipController(_movement.x);

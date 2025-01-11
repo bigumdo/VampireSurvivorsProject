@@ -7,9 +7,8 @@ using UnityEngine;
 
 namespace BGD.Players
 {
-    public class PlayerIdleState : AgentState
+    public class PlayerIdleState : PlayerBaseState
     {
-        private Player _player;
         public PlayerIdleState(Agent agent, AnimParamSO animParam) : base(agent, animParam)
         {
             _player = agent as Player;

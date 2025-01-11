@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace BGD.Players
 {
-    public class PlayerMoveState : PlayerGroundState
+    public class PlayerMoveState : PlayerBaseState
     {
         public PlayerMoveState(Agent agent, AnimParamSO animParam) : base(agent, animParam)
         {

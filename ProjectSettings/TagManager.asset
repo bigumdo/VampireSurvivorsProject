@@ -11,7 +11,7 @@ TagManager:
   - Ground
   - Water
   - UI
-  - Playeer
+  - Player
   - Enemy
   - Obj
   - 
@@ -52,4 +52,7 @@ TagManager:
     locked: 0
   - name: Agent
     uniqueID: 3991528479
+    locked: 0
+  - name: UI
+    uniqueID: 2889791895
     locked: 0

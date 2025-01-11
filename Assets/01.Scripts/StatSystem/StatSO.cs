@@ -73,8 +73,10 @@ namespace BGD.StatSystem
 
         private void TryInvokeValueChangedEvent(float value, float prevValue)
         {
-            if(Mathf.Approximately(prevValue, value) == false) 
+            if(Mathf.Approximately(prevValue, value) == false)
+            {
                 OnValueChange?.Invoke(this, value, prevValue);
+            }
         }
 
         public object Clone()
