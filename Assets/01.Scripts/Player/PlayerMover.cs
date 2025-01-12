@@ -15,7 +15,7 @@ namespace BGD.Players
         protected override void MoveCharacter()
         {
             int playerDir = _player.PlayerInputSO.InputDirection.x > 0 ? 1 : -1;
-            if (CanManualMove)
+            if (CanMove)
             {
                 if (playerDir == MouseManager.Instance.MouseDir)
                     _rbCompo.velocity = _movement * _moveSpeed * SpeedMultiplier;

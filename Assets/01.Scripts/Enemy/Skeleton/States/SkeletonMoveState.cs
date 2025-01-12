@@ -19,7 +19,6 @@ namespace BGD.Enemys
         public override void Update()
         {
             base.Update();
-                Debug.Log(1);
             if(_enemy.Cast(CastTypeEnum.AttackRnage))
             {
                 _enemy.ChangeState(FSMState.Attack);

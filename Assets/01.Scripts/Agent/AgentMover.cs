@@ -17,7 +17,7 @@ namespace BGD.Agents
         protected float _moveSpeed = 5f;
 
         public Vector2 Velocity => _rbCompo.velocity;
-        public bool CanManualMove { get; set; } = true; //Ű����� ������ ����
+        public bool CanMove { get; set; } = true; //Ű����� ������ ����
         public float SpeedMultiplier { get; set; } = 1f;
 
         protected Rigidbody2D _rbCompo;
@@ -74,7 +74,7 @@ namespace BGD.Agents
 
         protected virtual void MoveCharacter()
         {
-            if (CanManualMove)
+            if (CanMove)
             {
                 _rbCompo.velocity = _movement * _moveSpeed * SpeedMultiplier;
             }
@@ -84,10 +84,10 @@ namespace BGD.Agents
 
         public virtual void KnockBack(Vector2 force, float time)
         {
-            CanManualMove = false;
+            CanMove = false;
             StopImmediately();
             AddForceToEntity(force);
-            DOVirtual.DelayedCall(time, () => CanManualMove = true);
+            DOVirtual.DelayedCall(time, () => CanMove = true);
         }
     }
 }

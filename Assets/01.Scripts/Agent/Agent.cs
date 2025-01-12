@@ -10,6 +10,8 @@ namespace BGD.Agents
     public class Agent : MonoBehaviour
     {
         public bool IsDead { get; set; }
+        public bool CanMove { get; set; } = true;
+
         protected Dictionary<Type, IAgentComponent> _components;
         public UnityEvent OnDeadEvent;
         public UnityEvent OnHitEvent;

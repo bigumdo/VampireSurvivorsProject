@@ -8,7 +8,6 @@ namespace BGD.FSM
 {
     public class AgentState 
     {
-
         protected Agent _agent;
         protected AnimParamSO _animParam;
         protected bool _isTriggerCall;
