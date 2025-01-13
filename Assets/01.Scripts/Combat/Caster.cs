@@ -29,6 +29,7 @@ namespace BGD.Combat
             BaseCaster[] casts = GetComponents<BaseCaster>();//감지할 캐스트 종류를 가져옴
             foreach (BaseCaster c in casts)
             {
+                c.Initialize(agent);
                 _casters.Add(c.castType, c); // Enum으로 cast구결하기 위해 추가
             }
         }
