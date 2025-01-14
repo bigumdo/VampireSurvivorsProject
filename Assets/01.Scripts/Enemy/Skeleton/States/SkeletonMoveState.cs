@@ -22,7 +22,6 @@ namespace BGD.Enemys
             if(_enemy.Cast(CastTypeEnum.AttackRnage))
             {
                 _enemy.ChangeState(FSMState.Attack);
-                Debug.Log(1);
             }
         }
     }
