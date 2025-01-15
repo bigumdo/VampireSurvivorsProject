@@ -18,7 +18,7 @@ namespace BGD.Combat
         private Dictionary<CastTypeEnum, BaseCaster> _casters; //Cast할 종류Dictionary
         private Collider2D[] castTargets; // 감지한 오브젝트의 Collider를 담는 변수
         private AgentRenderer _agentRenderer;
-        [SerializeField]private Vector2 _agentDir;
+        private Vector2 _agentDir;
         [SerializeField] private BaseCaster _currentCast;//현재 감자히는 Caster를 담아 놓는 변수
 
         public void Initialize(Agent agent)

@@ -16,6 +16,7 @@ namespace BGD.Combat
             {
                 if (colliders[i].TryGetComponent(out AgentHealth health))
                 {
+                    Debug.Log(1);
                     health.ApplyDamage(_damage);
                     _listTime = Time.time;
                 }

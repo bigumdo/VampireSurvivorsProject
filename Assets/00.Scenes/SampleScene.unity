@@ -27525,7 +27525,7 @@ GameObject:
   - component: {fileID: 362188648}
   - component: {fileID: 362188650}
   - component: {fileID: 362188649}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Skeleton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27646,7 +27646,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -28303,6 +28303,10 @@ PrefabInstance:
       propertyPath: castOffset.y
       value: 0.33
       objectReference: {fileID: 0}
+    - target: {fileID: 6928055503278144571, guid: 2a1de4a7dfb789f46a6a7adb67cf160b, type: 3}
+      propertyPath: targetLayer.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -28338,8 +28342,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   castCnt: 1
-  castOffset: {x: 0.06, y: 0.2}
-  castRange: 0.86
+  castOffset: {x: 0, y: 0.4}
+  castRange: 0.83
 --- !u!1 &966024595
 GameObject:
   m_ObjectHideFlags: 0
@@ -70874,6 +70878,7 @@ GameObject:
   - component: {fileID: 2146830792}
   - component: {fileID: 2146830791}
   - component: {fileID: 2146830793}
+  - component: {fileID: 2146830794}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -70985,6 +70990,18 @@ MonoBehaviour:
   playerFSM: {fileID: 11400000, guid: 170b7cf977edf5f4e979bb9273d7d5fb, type: 2}
   <PlayerInputSO>k__BackingField: {fileID: 11400000, guid: f76259e845185d6479134beba1a6e9e2, type: 2}
   atkCoolTimeStat: {fileID: 11400000, guid: 98255b343169a79479cc96c47c70e764, type: 2}
+--- !u!114 &2146830794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2146830789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34e15522c7412e74ea486a3afad30acb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2896216939028619042
 PrefabInstance:
   m_ObjectHideFlags: 0
