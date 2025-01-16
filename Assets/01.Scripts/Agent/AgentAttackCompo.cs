@@ -11,10 +11,13 @@ namespace BGD.Agents
     public class AgentAttackCompo : MonoBehaviour, IAgentComponent, IAfterInitable
     {
         [SerializeField] private StatSO _damageStat;
+        [SerializeField] private List<AttackDataSO> _attackDatas;
         private Caster _caster;
         private Agent _agent;
         private EnemyAnimationTrigger _animTrigger;
         private AgentStat _statCompo;
+        private AttackDataSO _currentAttackData;
+        private Dictionary<string, AttackDataSO> _atkDictionary;
 
         public void Initialize(Agent agent)
         {
@@ -22,17 +25,18 @@ namespace BGD.Agents
             _caster = agent.GetCompo<Caster>();
             _statCompo = agent.GetCompo<AgentStat>();
             _animTrigger = agent.GetCompo<EnemyAnimationTrigger>(true);
+
+            _atkDictionary = new Dictionary<string, AttackDataSO>();
+            _attackDatas.ForEach(data => _atkDictionary.Add(data.attackName, data));
         }
         public void AfterInit()
         {
             _damageStat = _statCompo.GetStat(_damageStat);
-            _damageStat.OnValueChange += HandleAttackDamageChange;
             _animTrigger.OnAttackTrigger += HandleAttackTrigger;
         }
 
         private void OnDestroy()
         {
-            _damageStat.OnValueChange -= HandleAttackDamageChange;
             _animTrigger.OnAttackTrigger -= HandleAttackTrigger;
         }
 
@@ -41,9 +45,17 @@ namespace BGD.Agents
             _caster.Cast(CastTypeEnum.Damge);
         }
 
-        private void HandleAttackDamageChange(StatSO stat, float current, float previous)
+        public AttackDataSO GetAttackData(string KeyName)
         {
-            
+            AttackDataSO returnData = _atkDictionary.GetValueOrDefault(KeyName);
+            Debug.Assert(returnData != null, $"{KeyName} attack data not found");
+            return returnData;
+
+        }
+
+        public void SetAttackData(AttackDataSO atkData)
+        {
+            _currentAttackData = atkData;
         }
     }
 }
