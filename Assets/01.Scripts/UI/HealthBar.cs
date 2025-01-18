@@ -1,13 +1,14 @@
 
 using BGD.Agents;
 using BGD.StatSystem;
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace BGD
+namespace BGD.UI
 {
     public class HealthBar : MonoBehaviour
     {
@@ -15,13 +16,17 @@ namespace BGD
         [SerializeField] private Image _fillImage;
         private StatSO _hpStat;
         private CanvasGroup _canvasGroup;
+        private AgentHealth _health;
+
 
         private void Start()
         {
-            _owner.OnHitEvent.AddListener(HadleHitEvent);
-            _owner.OnDeadEvent.AddListener(HadleDeadEvent);
             _hpStat = _owner.GetCompo<AgentStat>().HpStat;
+            _health = _owner.GetCompo<AgentHealth>();
             _canvasGroup = GetComponent<CanvasGroup>();
+
+            _owner.OnDeadEvent.AddListener(HadleDeadEvent);
+            _owner.OnHitEvent.AddListener(HadleHitEvent);
         }
 
         private void OnDestroy()
@@ -32,12 +37,12 @@ namespace BGD
 
         private void HadleDeadEvent()
         {
-
+            _canvasGroup.DOFade(0, 1);
         }
 
         private void HadleHitEvent()
         {
-            _fillImage.fillAmount = _hpStat.MaxValue / _hpStat.Value;
+            _fillImage.fillAmount = _health.CurrentHealth / _health.MaxHealth;
         }
     }
 }
