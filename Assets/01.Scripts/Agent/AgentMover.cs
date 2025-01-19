@@ -77,9 +77,8 @@ namespace BGD.Agents
             if (CanMove)
             {
                 _rbCompo.velocity = _movement * _moveSpeed * SpeedMultiplier;
+                _renderer.FlipController(_movement.x);
             }
-
-            _renderer.FlipController(_movement.x);
         }
 
         public virtual void KnockBack(Vector2 force, float time)

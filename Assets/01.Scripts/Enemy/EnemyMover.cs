@@ -19,10 +19,10 @@ namespace BGD.Enemys
         protected override void MoveCharacter()
         {
             int dir = _enemy.playerManager.Player.transform.position.x - transform.position.x > 0.5f ? 1 : -1;
-            _enemy.GetCompo<AgentRenderer>().FlipController(dir);
             if ((_enemy.playerManager.Player.transform.position - transform.position).sqrMagnitude > 0.5f
                 && CanMove)
             {
+            _enemy.GetCompo<AgentRenderer>().FlipController(dir);
                 Vector2 dirs = (_enemy.playerManager.Player.transform.position - transform.position).normalized;
                 _rbCompo.velocity = dirs * _moveSpeed;
             }

@@ -10,6 +10,7 @@ namespace BGD.UI
         private Agent _agent;
         private RectTransform _rectTrm;
         private AgentRenderer _renderer;
+        private Quaternion _initRotation;
 
         public void Initialize(Agent agent)
         {
@@ -19,14 +20,14 @@ namespace BGD.UI
 
         private void Awake()
         {
-            //_rectTrm = transform as RectTransform;
+            _rectTrm = transform as RectTransform;
+            _initRotation = _rectTrm.localRotation;
         }
 
         void LateUpdate()
         {
-            Debug.Log(transform.parent.transform.rotation);
-            //Vector3 rotation = transform.parent.rotation
-            //transform.rotation = Quaternion.Euler();
+            
+            transform.rotation = _initRotation;
         }
     }
 }
