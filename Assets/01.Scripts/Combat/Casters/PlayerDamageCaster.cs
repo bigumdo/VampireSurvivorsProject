@@ -20,5 +20,11 @@ namespace BGD.Combat
             }
             return false;
         }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawRay((Vector2)transform.position + castOffset, transform.right * 10);
+        }
     }
 }

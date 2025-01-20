@@ -9,7 +9,8 @@ namespace BGD.Combat
     public enum CastTypeEnum // Cast≈∏¿‘
     {
         Damge,
-        AttackRnage
+        AttackRnage,
+        PlayerAttack
     }
 
     public class Caster : MonoBehaviour, IAgentComponent

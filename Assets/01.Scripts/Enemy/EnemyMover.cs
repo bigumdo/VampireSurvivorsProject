@@ -22,7 +22,7 @@ namespace BGD.Enemys
             if ((_enemy.playerManager.Player.transform.position - transform.position).sqrMagnitude > 0.5f
                 && CanMove)
             {
-            _enemy.GetCompo<AgentRenderer>().FlipController(dir);
+                _enemy.GetCompo<AgentRenderer>().FlipController(dir);
                 Vector2 dirs = (_enemy.playerManager.Player.transform.position - transform.position).normalized;
                 _rbCompo.velocity = dirs * _moveSpeed;
             }
